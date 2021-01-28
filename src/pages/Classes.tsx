@@ -8,6 +8,8 @@ import ClassItemSkeleton from '../components/skeletons/ClassItemSkeleton'
 import { classesData as initialClasses } from '../utils/dummy'
 import Tabs from '../components/Tabs'
 import PageLayout from './PageLayout'
+import { Helmet } from 'react-helmet'
+import { createTitle } from '../utils/utils'
 
 let classesData = initialClasses
 
@@ -88,10 +90,11 @@ const Classes = () => {
     }
   }, [params?.id])
 
-  // const activeTabClass = 'border-b text-gray-900 border-gray-900 dark:text-white dark:border-white'
-
   return (
     <PageLayout>
+      <Helmet>
+        <title>{createTitle('Classes')}</title>
+      </Helmet>
       <PageLayout.Main>
         <div id="contentHeader" className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Classes</h1>

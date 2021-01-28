@@ -8,7 +8,8 @@
     },
     "strict": true,
     "target": "ES2015",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
 }

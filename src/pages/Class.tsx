@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { RiVolumeVibrateFill } from 'react-icons/ri'
 import { Link, useLocation } from 'wouter'
+import { createTitle } from '../utils/utils'
 import Alert from '../components/Alert'
 import { ClassItemProps } from '../components/ClassItem'
 import Tabs from '../components/Tabs'
@@ -19,6 +21,9 @@ const Class = (props: ClassProps) => {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>{createTitle(data?.name)}</title>
+      </Helmet>
       <PageLayout.Main>
         <div id="contentHeader" className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">{data?.name}</h1>
