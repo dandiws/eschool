@@ -15,15 +15,14 @@ function App() {
           <Sidebar />
           <div
             id="mainWrapper"
-            className="min-w-0 w-full flex-auto lg:static lg:max-h-full lg:overflow-visible"
-          >
+            className="min-w-0 w-full flex-auto lg:static lg:max-h-full lg:overflow-visible">
             <Topbar />
             <Switch>
               <Route path="/">
                 <Redirect to="/c/today" />
               </Route>
               <Route path="/c/s/:slug">
-                {(params) => <Class slug={params.slug} />}
+                {params => <Class slug={params.slug} />}
               </Route>
               <Route path="/c/:type">
                 <Classes />

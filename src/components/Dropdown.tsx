@@ -10,10 +10,20 @@ interface DropdownProps {
   outerMargin?: number
 }
 
-const DropDown = ({ content, children, wrapperClassName, outerMargin = 30 }: DropdownProps) => {
+const DropDown = ({
+  content,
+  children,
+  wrapperClassName,
+  outerMargin = 30
+}: DropdownProps) => {
   const [visible, setVisible] = useState(false)
-  const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null)
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
+  const [
+    referenceElement,
+    setReferenceElement
+  ] = useState<HTMLDivElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  )
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null)
 
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -22,19 +32,19 @@ const DropDown = ({ content, children, wrapperClassName, outerMargin = 30 }: Dro
       {
         name: 'preventOverflow',
         options: {
-          padding: outerMargin,
-        },
+          padding: outerMargin
+        }
       },
       {
         name: 'offset',
         options: {
-          offset: [0, 15],
-        },
-      },
-    ],
+          offset: [0, 15]
+        }
+      }
+    ]
   })
   const createPortal = usePortal('#portal')
-  const outerClickRef = useOuterClick<HTMLDivElement>((e) => {
+  const outerClickRef = useOuterClick<HTMLDivElement>(e => {
     if (!referenceElement?.contains(e.target as Element)) {
       setVisible(false)
     }
@@ -42,7 +52,7 @@ const DropDown = ({ content, children, wrapperClassName, outerMargin = 30 }: Dro
 
   return (
     <>
-      <div onClick={() => setVisible((vis) => !vis)} ref={setReferenceElement}>
+      <div onClick={() => setVisible(vis => !vis)} ref={setReferenceElement}>
         {children}
       </div>
       {visible &&
@@ -52,10 +62,12 @@ const DropDown = ({ content, children, wrapperClassName, outerMargin = 30 }: Dro
               className={`popper bg-white dark:bg-dark-600 shadow-lg rounded-lg ${wrapperClassName}`}
               style={styles.popper}
               {...attributes.popper}
-              ref={setPopperElement}
-            >
+              ref={setPopperElement}>
               {content}
-              <div className="popper-arrow" ref={setArrowElement} style={styles.arrow}></div>
+              <div
+                className="popper-arrow"
+                ref={setArrowElement}
+                style={styles.arrow}></div>
             </div>
           </div>
         )}

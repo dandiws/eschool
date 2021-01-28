@@ -1,10 +1,10 @@
-import { ConfigType } from "dayjs";
+import { ConfigType } from 'dayjs'
 
 export interface People {
   name: string
   sex: 'M' | 'F'
-  birth_place?: string
-  birth_date?: string
+  birthPlace?: string
+  birthDate?: string
 }
 
 export interface Student extends People {}
@@ -28,6 +28,6 @@ export interface Class {
   teachers: Teacher[]
   students?: Student[]
   schedules: BussinessHour[]
-  meet_url?: string
-  isBookmarked? : boolean
+  meetUrl?: string
+  isBookmarked?: boolean
 }

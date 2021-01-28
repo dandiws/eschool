@@ -1,23 +1,21 @@
-import React from 'react';
+import React from 'react'
 import {
   RiBook3Line,
   RiCalendar2Line,
   RiInboxLine,
   RiSettings2Line,
-  RiTaskLine,
+  RiTaskLine
 } from 'react-icons/ri'
-import { Link } from 'wouter';
+import { Link } from 'wouter'
 
 const Sidebar = () => {
   return (
     <div
       id="sidebar"
-      className="hidden fixed w-full z-20 bg-white dark:bg-dark-800 lg:block lg:static lg:w-72 lg:z-0"
-    >
+      className="hidden fixed w-full z-20 bg-white dark:bg-dark-800 lg:block lg:static lg:w-72 lg:z-0">
       <div
         id="navWrapper"
-        className="block px-10 py-11 lg:sticky lg:h-screen top-0"
-      >
+        className="block px-10 py-11 lg:sticky lg:h-screen top-0">
         <nav>
           <div id="logo" className="mb-10 flex justify-center">
             <strong className="text-2xl">

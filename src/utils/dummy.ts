@@ -1,7 +1,8 @@
-import dayjs from "dayjs";
-import { ClassItemProps } from "../components/ClassItem";
+import dayjs from 'dayjs'
+import { ClassItemProps } from '../components/ClassItem'
+import { DayOfWeek } from './types'
 
-export let classesData: ClassItemProps[] = [
+export const classesData: ClassItemProps[] = [
   {
     isBookmarked: false,
     slug: 'math',
@@ -10,22 +11,22 @@ export let classesData: ClassItemProps[] = [
       {
         name: 'Lumban H',
         sex: 'M',
-        title: 'mr',
+        title: 'mr'
       },
       {
         name: 'Atikah L',
         sex: 'F',
         title: 'mrs',
-        degree: 'S.Pd',
-      },
+        degree: 'S.Pd'
+      }
     ],
     schedules: [
       {
         day: 2,
         startTime: dayjs().hour(7),
-        endTime: dayjs().hour(9),
-      },
-    ],
+        endTime: dayjs().hour(9)
+      }
+    ]
   },
   {
     isBookmarked: true,
@@ -36,22 +37,22 @@ export let classesData: ClassItemProps[] = [
         name: 'Juli J',
         sex: 'F',
         title: 'ms',
-        degree: 'S.Pd',
-      },
+        degree: 'S.Pd'
+      }
     ],
     schedules: [
       {
         day: 3,
         startTime: dayjs().hour(8),
-        endTime: dayjs().hour(10),
+        endTime: dayjs().hour(10)
       },
       {
         day: dayjs().day() as DayOfWeek,
         startTime: dayjs().subtract(1, 'h'),
-        endTime: dayjs().add(1, 'h'),
-      },
+        endTime: dayjs().add(1, 'h')
+      }
     ],
-    meet_url: 'https://meet.google.com/random-room',
+    meetUrl: 'https://meet.google.com/random-room'
   },
   {
     isBookmarked: false,
@@ -62,15 +63,15 @@ export let classesData: ClassItemProps[] = [
         name: 'Rohmani',
         sex: 'M',
         title: 'mr',
-        degree: 'M.Ag',
-      },
+        degree: 'M.Ag'
+      }
     ],
     schedules: [
       {
         day: 0,
         startTime: dayjs().hour(12),
-        endTime: dayjs().hour(13),
-      },
-    ],
-  },
+        endTime: dayjs().hour(13)
+      }
+    ]
+  }
 ]

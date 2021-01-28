@@ -19,11 +19,11 @@ interface ClassItemsProp {
 const ClassItems = ({ classes, onBookmarkClick }: ClassItemsProp) => {
   return (
     <div className="space-y-5">
-      {classes.map((classProps) => (
+      {classes.map(classProps => (
         <div key={classProps.slug} className="hover:shadow-sm">
           <ClassItem
             {...classProps}
-            onBookmarkClick={(e) => {
+            onBookmarkClick={e => {
               if (onBookmarkClick) {
                 onBookmarkClick(classProps.slug)
               }
@@ -36,18 +36,17 @@ const ClassItems = ({ classes, onBookmarkClick }: ClassItemsProp) => {
 }
 
 const getClasses = async (type: string) => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       switch (type) {
         case 'today':
           return resolve(
             classesData.filter(
-              (c) =>
-                c.schedules.filter((s) => s.day === dayjs().day()).length > 0
+              c => c.schedules.filter(s => s.day === dayjs().day()).length > 0
             )
           )
         case 'bookmark':
-          return resolve(classesData.filter((c) => c.isBookmarked))
+          return resolve(classesData.filter(c => c.isBookmarked))
         case 'all':
           return resolve(classesData)
         default:
@@ -64,19 +63,19 @@ const Classes = () => {
   const [loading, setLoading] = useState(false)
 
   const handleBookmark = (slug: string) => {
-    setClasses((cls) =>
-      cls.map((c) =>
+    setClasses(cls =>
+      cls.map(c =>
         c.slug === slug ? { ...c, isBookmarked: !c.isBookmarked } : c
       )
     )
-    classesData = classesData.map((c) =>
+    classesData = classesData.map(c =>
       c.slug === slug ? { ...c, isBookmarked: !c.isBookmarked } : c
     )
   }
 
-  const fetchAndSetClasses = useCallback((id) => {
+  const fetchAndSetClasses = useCallback(id => {
     setLoading(true)
-    getClasses(id).then((classes) => {
+    getClasses(id).then(classes => {
       const data = classes as ClassItemProps[]
       setClasses(data)
       setLoading(false)
@@ -98,8 +97,7 @@ const Classes = () => {
           <h1 className="text-3xl font-bold">Classes</h1>
           <button
             className="btn rounded-full dark:bg-dark-500 dark:text-white"
-            onClick={() => setVisible(true)}
-          >
+            onClick={() => setVisible(true)}>
             <RiKey2Line /> <span>Join using code {visible}</span>
           </button>
         </div>
@@ -146,8 +144,7 @@ const Classes = () => {
         <div className="flex justify-center space-x-4 mt-10">
           <button
             className="btn w-1/2 dark:bg-dark-400 dark:text-white"
-            onClick={() => setVisible(false)}
-          >
+            onClick={() => setVisible(false)}>
             Cancel
           </button>
           <button className="btn btn-primary w-1/2">Join</button>

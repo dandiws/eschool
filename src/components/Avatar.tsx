@@ -13,11 +13,15 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     const avatarImageStyle = {
       WebkitMaskImage: onlineStatus
         ? 'radial-gradient(circle at 2.5rem 2.5rem, transparent 6px, black 6px)'
-        : 'none',
+        : 'none'
     }
     const shapeClassName = shape === 'circle' ? 'rounded-full' : 'rounded'
     const sizeClassName =
-      size === 'small' ? 'w-8 h-8' : size === 'large' ? 'w-16 h-16' : 'w-12 h-12'
+      size === 'small'
+        ? 'w-8 h-8'
+        : size === 'large'
+        ? 'w-16 h-16'
+        : 'w-12 h-12'
 
     const avatarImageClassName = `${shapeClassName} ${sizeClassName} bg-gray-400 flex items-center justify-center text-white text-xl overflow-hidden`
     return (
@@ -34,5 +38,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     )
   }
 )
+
+Avatar.displayName = 'Avatar'
 
 export default Avatar

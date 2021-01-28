@@ -7,9 +7,16 @@ interface SwitchProps {
   readonly?: boolean
 }
 
-const Switch = ({ children, onChange, readonly = false, checked = false }: SwitchProps) => {
+const Switch = ({
+  children,
+  onChange,
+  readonly = false,
+  checked = false
+}: SwitchProps) => {
   return (
-    <label htmlFor="toogleA" className="flex items-center cursor-pointer space-x-3">
+    <label
+      htmlFor="toogleA"
+      className="flex items-center cursor-pointer space-x-3">
       <div className="relative">
         <input
           checked={checked}

@@ -12,13 +12,17 @@ const PageLayout = ({ children }: PageLayoutProps) => {
   )
 }
 
-PageLayout.Main = (props: any) => {
+export const Main = (props: any) => {
   return <div className="w-full">{props.children}</div>
 }
-PageLayout.RightBar = (props: any) => {
+
+export const RightBar = (props: any) => {
   return (
     <div id="rightBar" className="sticky top-12 w-full lg:w-1/2" {...props} />
   )
 }
+
+PageLayout.Main = Main
+PageLayout.RightBar = RightBar
 
 export default PageLayout

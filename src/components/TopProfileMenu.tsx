@@ -5,8 +5,8 @@ import Switch from './Switch'
 
 const TopProfileMenu = () => {
   const { theme, setTheme } = useTheme()
-  const toggleTheme: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
-    setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+  const toggleTheme: React.MouseEventHandler<HTMLAnchorElement> = e => {
+    setTheme(t => (t === 'dark' ? 'light' : 'dark'))
     e.preventDefault()
   }
 
@@ -20,8 +20,7 @@ const TopProfileMenu = () => {
       <a
         onClick={toggleTheme}
         className="dropdown-menu"
-        href="#settings/account"
-      >
+        href="#settings/account">
         <Switch checked={theme === 'dark'} readonly>
           <span>Dark Mode</span>
         </Switch>

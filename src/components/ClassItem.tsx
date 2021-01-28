@@ -3,21 +3,14 @@ import {
   RiArrowRightSLine,
   RiBookmarkFill,
   RiBookmarkLine,
-  RiCheckboxBlankCircleFill,
-  RiFlag2Fill,
   RiFlag2Line,
-  RiFlagLine,
   RiMoreFill,
-  RiShareBoxLine,
   RiShareLine,
   RiTimeFill,
-  RiTimeLine,
   RiUser2Fill,
-  RiUser2Line,
-  RiVidicon2Line,
-  RiWalkLine,
+  RiWalkLine
 } from 'react-icons/ri'
-import dayjs, { ConfigType } from 'dayjs'
+import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { Class } from '~utils/types'
 import Card from './Card'
@@ -40,7 +33,9 @@ const CardItemActionMenu = () => {
         <RiFlag2Line /> <span>Report</span>
       </a>
       <hr className="my-2 border-gray-200 dark:border-dark-800" />
-      <a href="#" className="dropdown-menu block text-left space-x-2 text-red text-red-400">
+      <a
+        href="#"
+        className="dropdown-menu block text-left space-x-2 text-red text-red-400">
         <RiWalkLine /> <span>Leave Class</span>
       </a>
     </div>
@@ -53,29 +48,31 @@ const ClassItem = ({
   slug,
   teachers,
   isBookmarked = false,
-  meet_url,
-  students,
-  onBookmarkClick,
+  onBookmarkClick
 }: ClassItemProps) => {
   const isOnGoing =
     schedules
-      .filter((s) => s.day === dayjs().day())
-      .filter((s) => dayjs().isBetween(s.startTime, s.endTime)).length > 0
-  const teachersName = teachers.map((t) => `${t.title} ${t.name} ${t.degree || ''}`)
+      .filter(s => s.day === dayjs().day())
+      .filter(s => dayjs().isBetween(s.startTime, s.endTime)).length > 0
+  const teachersName = teachers.map(
+    t => `${t.title} ${t.name} ${t.degree || ''}`
+  )
 
   return (
     <Card>
       <Card.CardHeader className="flex justify-between items-center border-none pb-2">
         <h2>{name}</h2>
         <div className="flex items-center space-x-2">
-        {
-          isOnGoing && <span className="text-green-500 py-1 px-2 bg-green-100 dark:bg-green-900 rounded lg:text-xs">On Going</span>
-        }
-        <DropDown content={<CardItemActionMenu />}>
-          <button className="focus:ring-0 text-dark-500 dark:text-gray-500 w-8 h-8 hover:bg-gray-100 dark:hover:bg-dark-600 rounded-full">
-            <RiMoreFill /> <div className="sr-only">More</div>
-          </button>
-        </DropDown>
+          {isOnGoing && (
+            <span className="text-green-500 py-1 px-2 bg-green-100 dark:bg-green-900 rounded lg:text-xs">
+              On Going
+            </span>
+          )}
+          <DropDown content={<CardItemActionMenu />}>
+            <button className="focus:ring-0 text-dark-500 dark:text-gray-500 w-8 h-8 hover:bg-gray-100 dark:hover:bg-dark-600 rounded-full">
+              <RiMoreFill /> <div className="sr-only">More</div>
+            </button>
+          </DropDown>
         </div>
       </Card.CardHeader>
       <div className="px-6 py-6 block space-y-6 lg:flex lg:space-y-0 text-dark-300 dark:text-gray-400 lg:text-sm">
@@ -86,8 +83,8 @@ const ClassItem = ({
             </small>
           </div>
           <div className="space-y-2">
-            {teachersName.map((name) => (
-              <div>{name}</div>
+            {teachersName.map(name => (
+              <div key={name}>{name}</div>
             ))}
           </div>
         </div>
@@ -98,10 +95,11 @@ const ClassItem = ({
             </small>
           </div>
           <div className="space-y-2">
-            {schedules.map((sc) => {
+            {schedules.map(sc => {
               return (
-                <div>
-                  {dayjs().day(sc.day).format('dddd')}, {dayjs(sc.startTime).format('HH:mm')} -{' '}
+                <div key={sc.startTime.valueOf()}>
+                  {dayjs().day(sc.day).format('dddd')},{' '}
+                  {dayjs(sc.startTime).format('HH:mm')} -{' '}
                   {dayjs(sc.endTime).format('HH:mm')}
                 </div>
               )
@@ -122,7 +120,10 @@ const ClassItem = ({
               />
             </div>
             <div>
-              <Avatar size="small" url="https://uifaces.co/our-content/donated/N5PLzyan.jpg" />
+              <Avatar
+                size="small"
+                url="https://uifaces.co/our-content/donated/N5PLzyan.jpg"
+              />
             </div>
           </div>
           <span className="ml-3">45 other students is joined</span>
@@ -130,14 +131,12 @@ const ClassItem = ({
         <div className="flex justify-around space-x-2 whitespace-nowrap">
           <button
             onClick={onBookmarkClick}
-            className="px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-dark-600 focus:ring-0"
-          >
+            className="px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-dark-600 focus:ring-0">
             {isBookmarked ? <RiBookmarkFill /> : <RiBookmarkLine />} Bookmark
           </button>
           <Link
             href={`/c/s/${slug}`}
-            className="px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-dark-600 focus:ring-0"
-          >
+            className="px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-dark-600 focus:ring-0">
             See Details <RiArrowRightSLine />
           </Link>
         </div>

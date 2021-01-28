@@ -23,8 +23,8 @@ interface UseTheme {
 }
 
 export const ThemeContext = React.createContext<UseTheme>({
-  theme:'light',
-  setTheme: ()=>{}
+  theme: 'light',
+  setTheme: () => {}
 })
 
 interface ThemeProviderProps {
@@ -32,7 +32,10 @@ interface ThemeProviderProps {
   children?: ReactNode
 }
 
-export const ThemeProvider = ({ initialTheme, children }: ThemeProviderProps) => {
+export const ThemeProvider = ({
+  initialTheme,
+  children
+}: ThemeProviderProps) => {
   const [theme, setTheme] = React.useState(getInitialTheme)
 
   const rawSetTheme = (rawTheme: string) => {
@@ -52,9 +55,12 @@ export const ThemeProvider = ({ initialTheme, children }: ThemeProviderProps) =>
   React.useEffect(() => {
     rawSetTheme(theme)
   }, [theme])
-  
 
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  )
 }
 
 export const useTheme = () => React.useContext(ThemeContext)

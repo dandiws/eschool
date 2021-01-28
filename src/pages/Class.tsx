@@ -12,10 +12,10 @@ interface ClassProps {
 }
 
 const Class = (props: ClassProps) => {
-  const [data, setData] = useState<ClassItemProps | undefined>(() =>
-    classesData.find((c) => c.slug === props.slug)
+  const [data] = useState<ClassItemProps | undefined>(() =>
+    classesData.find(c => c.slug === props.slug)
   )
-  const [location, setLocation] = useLocation()
+  const [location] = useLocation()
 
   return (
     <PageLayout>
@@ -47,15 +47,13 @@ const Class = (props: ClassProps) => {
             </div>
             <p className="lg:text-sm">
               Remidi akan dilakukan pada hari Rabu 5 Agustus 2021. Semua siswa
-              diharapkan mengecek nilai tugas 5 "Kalimat Induktif" pada kolom
-              Penugasan.
+              diharapkan mengecek nilai tugas 5 &quot;Kalimat Induktif&quot;
+              pada kolom Penugasan.
             </p>
           </Alert>
         </div>
       </PageLayout.Main>
-      <PageLayout.RightBar>
-        haha
-      </PageLayout.RightBar>
+      <PageLayout.RightBar>haha</PageLayout.RightBar>
     </PageLayout>
   )
 }
