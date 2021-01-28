@@ -1,0 +1,74 @@
+.card {
+  @apply bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded px-7 py-5;
+}
+
+.btn {
+  @apply py-2 px-4 bg-gray-200 rounded font-medium disabled:opacity-50 disabled:cursor-not-allowed lg:text-sm;
+}
+
+.btn-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
+}
+
+.popper-arrow,
+.popper-arrow::before {
+  @apply absolute w-4 h-4;
+  z-index: -1;
+}
+
+.popper-arrow::before {
+  content: '';
+  @apply transform rotate-45 bg-white dark:bg-dark-600;
+}
+
+.popper[data-popper-placement^='top'] > .popper-arrow {
+  @apply -bottom-2;
+}
+
+.popper[data-popper-placement^='bottom'] > .popper-arrow {
+  @apply -top-2;
+}
+
+.popper[data-popper-placement^='left'] > .popper-arrow {
+  @apply -right-2;
+}
+
+.popper[data-popper-placement^='right'] > .popper-arrow {
+  @apply -left-2;
+}
+
+.dropdown-menu {
+  @apply block px-4 py-3 hover:bg-gray-100 dark:hover:bg-dark-500 rounded w-full;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.switch__dot {
+  transition: all 0.3s ease-in-out;
+}
+
+input:checked ~ .switch__dot {
+  @apply bg-blue-500;
+  transform: translateX(100%);
+}
