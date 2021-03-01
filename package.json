@@ -13,17 +13,25 @@
   "dependencies": {
     "@popperjs/core": "^2.6.0",
     "@types/react-helmet": "^6.1.0",
+    "@xstate/react": "^1.2.2",
     "autoprefixer": "^10.2.1",
     "dayjs": "^1.10.3",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
     "postcss": "^8.2.4",
     "postcss-import": "^14.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^6.15.1",
     "react-icons": "^4.1.0",
     "react-popper": "^2.2.4",
+    "react-query": "^3.9.6",
+    "react-use": "^17.1.0",
+    "recoil": "^0.1.2",
     "tailwindcss": "^2.0.2",
-    "wouter": "^2.7.1"
+    "wouter": "^2.7.1",
+    "xstate": "^4.16.2"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.10.4",

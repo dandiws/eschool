@@ -13,23 +13,23 @@ module.exports = {
           400: '#383B47',
           300: '#444857',
           200: '#525769',
-          100: '#62687D',
-        },
+          100: '#62687D'
+        }
       },
       spacing: {
-        108: '27rem',
-      },
+        108: '27rem'
+      }
     },
     fontFamily: {
-      body: ['Inter', 'sans-serif'],
-    },
+      body: ['Inter', 'sans-serif']
+    }
   },
   variants: {
     extend: {
       opacity: ['disabled'],
       cursor: ['disabled'],
       backgroundOpacity: ['dark']
-    },
+    }
   },
-  plugins: [],
+  plugins: []
 }

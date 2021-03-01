@@ -6,7 +6,10 @@ interface TabsProps {
 
 const Tabs = ({ ...props }: TabsProps) => {
   return (
-    <div className="flex space-x-5 mt-4 text-gray-400 xl:text-sm" {...props} />
+    <div
+      className="flex mt-4 text-gray-400 xl:text-sm sticky top-0 z-10 border-b bg-gray-100 dark:bg-dark-900 dark:border-dark-700"
+      {...props}
+    />
   )
 }
 
@@ -16,10 +19,14 @@ interface TabItemProps {
 }
 
 const TabItem = ({ isActive = false, ...props }: TabItemProps) => {
-  const activeTabClass =
-    'border-b text-gray-900 border-gray-900 dark:text-white dark:border-white'
   return (
-    <div className={isActive ? `py-2 ${activeTabClass}` : 'py-2'} {...props} />
+    <div
+      className={`py-4 px-4 ${
+        isActive ? ' border-b border-black dark:border-white' : ''
+      }`}
+      style={{ marginBottom: -1 }}
+      {...props}
+    />
   )
 }
 

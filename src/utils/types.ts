@@ -1,5 +1,12 @@
 import { ConfigType } from 'dayjs'
 
+export interface IAuthUser {
+  username: string
+  name: string
+  sex: 'M' | 'F'
+  age: number
+}
+
 export interface People {
   name: string
   sex: 'M' | 'F'

@@ -13,9 +13,7 @@ const useOuterClick = <T extends Element>(callback: clickHandlerType) => {
 
   useEffect(() => {
     document.addEventListener('click', handleClick)
-    console.log('mounted')
     return () => {
-      console.log('unmounted')
       document.removeEventListener('click', handleClick)
     }
 

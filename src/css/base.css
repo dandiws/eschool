@@ -1,5 +1,5 @@
 body {
-  @apply font-body bg-gray-100 dark:bg-dark-900;
+  @apply font-body bg-gray-100 dark:bg-dark-900 lg:text-sm;
 }
 button,
 input {

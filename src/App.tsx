@@ -1,39 +1,43 @@
 import React from 'react'
 import { ThemeProvider } from './hooks/useTheme'
-import Sidebar from './components/Sidebar'
-import Classes from './pages/Classes'
-import Topbar from './components/Topbar'
 import { Redirect, Route, Switch } from 'wouter'
+import Login from './pages/Login'
+import PrivateRoute from './components/PrivateRoute'
+import { RecoilRoot } from 'recoil'
+import Classes from './components/classes'
 import Inbox from './pages/Inbox'
 import Class from './pages/Class'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
     <React.StrictMode>
-      <ThemeProvider>
-        <div className="lg:flex">
-          <Sidebar />
-          <div
-            id="mainWrapper"
-            className="min-w-0 w-full flex-auto lg:static lg:max-h-full lg:overflow-visible">
-            <Topbar />
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <ThemeProvider>
             <Switch>
-              <Route path="/">
-                <Redirect to="/c/today" />
-              </Route>
-              <Route path="/c/s/:slug">
+              <Route path="/login" component={Login} />
+              <PrivateRoute path="/">
+                <Redirect to="/classes" />
+              </PrivateRoute>
+              <PrivateRoute path="/classes/:slug">
                 {params => <Class slug={params.slug} />}
-              </Route>
-              <Route path="/c/:type">
+              </PrivateRoute>
+              <PrivateRoute path="/classes">
                 <Classes />
-              </Route>
-              <Route path="/inbox">
+              </PrivateRoute>
+              <PrivateRoute path="/inbox">
                 <Inbox />
+              </PrivateRoute>
+              <Route path="/:else?">
+                <h1>404 Not Found</h1>
               </Route>
             </Switch>
-          </div>
-        </div>
-      </ThemeProvider>
+          </ThemeProvider>
+        </RecoilRoot>
+      </QueryClientProvider>
     </React.StrictMode>
   )
 }

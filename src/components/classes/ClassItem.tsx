@@ -12,15 +12,60 @@ import {
 } from 'react-icons/ri'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
-import { Class } from '~utils/types'
-import Card from './Card'
-import Avatar from './Avatar'
+import Card from '../Card'
+import Avatar from '../Avatar'
 import { Link } from 'wouter'
-import DropDown from './Dropdown'
+import DropDown from '../Dropdown'
+import { Class } from '../../utils/types'
 dayjs.extend(isBetween)
 
-export interface ClassItemProps extends Class {
+export interface ClassItemProps {
+  eclass: Class
   onBookmarkClick?: React.MouseEventHandler
+}
+
+const isClassOngoing = (eclass: Class) =>
+  eclass.schedules
+    .filter(s => s.day === dayjs().day())
+    .filter(s => dayjs().isBetween(s.startTime, s.endTime)).length > 0
+
+// format array of string
+// ['apple','banana','watermelon'] => 'apple, banana, & watermelon'
+const formatArraytoString = (arr: string[]) =>
+  arr.reduce(
+    (r, s, i) =>
+      r === '' ? s : i === arr.length - 1 ? r + ' & ' + s : r + ', ' + s,
+    ''
+  )
+
+const nextSchedule = (eclass: Class) => {
+  const now = dayjs()
+
+  const scsorted = eclass.schedules.sort((a, b) => {
+    if (a.day === b.day) {
+      const aStart = dayjs(a.startTime)
+      const bStart = dayjs(b.startTime)
+      if (aStart.hour() === bStart.hour()) {
+        return aStart.minute() - bStart.minute()
+      }
+      return aStart.hour() - bStart.hour()
+    }
+    return a.day - b.day
+  })
+
+  const scnext = scsorted.find(sc => {
+    const scday = sc.day as number
+    if (scday === now.day()) {
+      const start = dayjs(sc.startTime)
+      if (start.hour() === now.hour()) {
+        return start.minute() > now.minute()
+      }
+      return start.hour() > now.hour()
+    }
+    return scday > now.day()
+  })
+
+  return scnext || scsorted[0]
 }
 
 const CardItemActionMenu = () => {
@@ -42,22 +87,32 @@ const CardItemActionMenu = () => {
   )
 }
 
-const ClassItem = ({
-  name,
-  schedules,
-  slug,
-  teachers,
-  isBookmarked = false,
-  onBookmarkClick
-}: ClassItemProps) => {
-  const isOnGoing =
-    schedules
-      .filter(s => s.day === dayjs().day())
-      .filter(s => dayjs().isBetween(s.startTime, s.endTime)).length > 0
-  const teachersName = teachers.map(
-    t => `${t.title} ${t.name} ${t.degree || ''}`
+const ClassItem = ({ eclass, onBookmarkClick }: ClassItemProps) => {
+  const isOnGoing = isClassOngoing(eclass)
+  const { name, schedules, slug, teachers, isBookmarked } = eclass
+
+  const teachersName = teachers.map(teacher =>
+    `${teacher.title} ${teacher.name} ${teacher.degree || ''}`.trimEnd()
   )
 
+  return (
+    <div className="flex items-center">
+      <button className="h-8 w-8 bg-transparent hover:bg-gray-300 rounded">
+        {isBookmarked ? <RiBookmarkFill /> : <RiBookmarkLine />}
+      </button>
+      <Link to={`/classes/${slug}`}>
+        <div className="hover:bg-gray-200 py-2 px-3 flex-1 rounded cursor-pointer">
+          <h2>{name}</h2>
+          <span className="text-gray-500">
+            By {formatArraytoString(teachersName)}
+          </span>
+        </div>
+        <div>{dayjs(nextSchedule(eclass).startTime).format('dddd HH:mm')}</div>
+      </Link>
+    </div>
+  )
+
+  //
   return (
     <Card>
       <Card.CardHeader className="flex justify-between items-center border-none pb-2">
@@ -135,7 +190,7 @@ const ClassItem = ({
             {isBookmarked ? <RiBookmarkFill /> : <RiBookmarkLine />} Bookmark
           </button>
           <Link
-            href={`/c/s/${slug}`}
+            href={`/classes/${slug}`}
             className="px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-dark-600 focus:ring-0">
             See Details <RiArrowRightSLine />
           </Link>
