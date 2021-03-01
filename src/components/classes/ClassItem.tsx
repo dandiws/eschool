@@ -95,24 +95,23 @@ const ClassItem = ({ eclass, onBookmarkClick }: ClassItemProps) => {
     `${teacher.title} ${teacher.name} ${teacher.degree || ''}`.trimEnd()
   )
 
-  return (
-    <div className="flex items-center">
-      <button className="h-8 w-8 bg-transparent hover:bg-gray-300 rounded">
-        {isBookmarked ? <RiBookmarkFill /> : <RiBookmarkLine />}
-      </button>
-      <Link to={`/classes/${slug}`}>
-        <div className="hover:bg-gray-200 py-2 px-3 flex-1 rounded cursor-pointer">
-          <h2>{name}</h2>
-          <span className="text-gray-500">
-            By {formatArraytoString(teachersName)}
-          </span>
-        </div>
-        <div>{dayjs(nextSchedule(eclass).startTime).format('dddd HH:mm')}</div>
-      </Link>
-    </div>
-  )
+  // return (
+  //   <div className="flex items-center">
+  //     <button className="h-8 w-8 bg-transparent hover:bg-gray-300 rounded">
+  //       {isBookmarked ? <RiBookmarkFill /> : <RiBookmarkLine />}
+  //     </button>
+  //     <Link to={`/classes/${slug}`}>
+  //       <div className="hover:bg-gray-200 py-2 px-3 flex-1 rounded cursor-pointer">
+  //         <h2>{name}</h2>
+  //         <span className="text-gray-500">
+  //           By {formatArraytoString(teachersName)}
+  //         </span>
+  //       </div>
+  //       <div>{dayjs(nextSchedule(eclass).startTime).format('dddd HH:mm')}</div>
+  //     </Link>
+  //   </div>
+  // )
 
-  //
   return (
     <Card>
       <Card.CardHeader className="flex justify-between items-center border-none pb-2">
